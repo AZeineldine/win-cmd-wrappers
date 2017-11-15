@@ -9,6 +9,7 @@
 @echo off
 setlocal enableExtensions enableDelayedExpansion
 set me=%~n0
+echo %me%
 
 rem set /P contVar=Begin: 
 rem echo step2 contVar is: !contVar!
@@ -32,21 +33,21 @@ rem echo step2 contVar is: !contVar!
 
     rem remaining arguments will be directories to process
     :ArgLoop
-        echo Arg is now: %1
+        echo Current argument is: %1
         set thisArg=%1
 
         if not "!thisArg!" == "" (
             call :CompArg %thisArg%
             shift
-            echo get next Arg...
+            echo Get next Arg...
             goto :ArgLoop
         )
     rem end ArgLoop
 
     :End
+    
+    echo --- %me% completed ---
     endlocal
-    echo on
-    echo --- Main done---
     @exit /B 0
 rem end Main
 
@@ -56,26 +57,26 @@ rem subroutine to process one argument
 rem the argument may be an expandable command line regex
 :CompArg
     for /D %%f in ("%~1") do (
-        echo step3 - directory is: %%f
+        echo Target directory is: %%f
         if not exist "%%f" (
             echo File or directory %%f does not exist
             exit /B
         ) else (
             pushd %%f
-            echo step4 - current directory is: !cd!
+            echo Current directory is: !cd!
             set /p areYouSure=!ACTVERB! !cd!?
-            echo calling compact with !ACTION!:
+            echo Calling compact with !ACTION!:
             if "!areYouSure!"=="yes" (
                 compact /s /!ACTION!
             ) 
             popd
-            echo Step 6 - current directory is: !cd!
+            echo Return to parent directory: !cd!
             if X!areYouSure!==Xquit (
                 exit /B
             )
         )
         echo Cont..     
     )
-    echo ---CompArg Done---
+    echo -- All arguments processed --
     exit /B
 rem end Comparg
