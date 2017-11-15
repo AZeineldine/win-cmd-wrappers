@@ -15,7 +15,8 @@ Remarks:  The motivation behind this wraper (and perhaps future ones) is to get 
                    
 Usage: compactdirs [-u|-c] filenae...
 
-Limitation: The wrapper expects directory names only as arguments. It will traverse each directory tree                 recursively and compress or uncompress each directory and all files present in the hierarchy.
+Limitation: The wrapper expects directory names only as arguments. It will traverse each directory tree                 
+	recursively and compress or uncompress each directory and all files present in the hierarchy.
 
 This is is an initial prototype with little error checking. If things work well, perhaps a wrapper library
 would be the goal that would eliminate some of the annoyances associated with passing filenames in the
