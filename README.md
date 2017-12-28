@@ -13,7 +13,7 @@ Remarks:  The motivation behind this wraper (and perhaps future ones) is to get 
 
           This wraper calls compact /s [/u|/c] to process the arguments passed to it
                    
-Usage: compactdirs [-u|-c] filenae...
+Usage: compactdirs [-u|-c] filename...
 
 Limitation: The wrapper expects directory names only as arguments. It will traverse each directory tree                 
 	recursively and compress or uncompress each directory and all files present in the hierarchy.
